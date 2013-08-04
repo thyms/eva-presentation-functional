@@ -1,0 +1,63 @@
+apply plugin: 'groovy'
+apply plugin: 'project-report'
+
+repositories {
+  maven { url "http://eva.repository.artifact.dk.com/repository-artifact/libs-release" }
+  mavenCentral()
+  mavenLocal()
+}
+
+ext.drivers = ['firefox']
+
+dependencies {
+  groovy 'org.codehaus.groovy:groovy-all:2.1.2'
+
+  def gebVersion = '0.9.0-RC-1'
+  def spockVersion = '0.7-groovy-2.0'
+  def seleniumVersion = '2.32.0'
+
+  testCompile "org.gebish:geb-spock:$gebVersion"
+  testCompile "org.spockframework:spock-core:$spockVersion", {
+    exclude module: "groovy-all"
+  }
+
+  testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.6", {
+    exclude module: "groovy"
+  }
+
+  // Drivers
+  drivers.each { driver ->
+    testCompile "org.seleniumhq.selenium:selenium-$driver-driver:$seleniumVersion"
+  }
+}
+
+test { systemProperties = System.getProperties() }
+
+task testHeadless(type: Test) {
+  systemProperties = System.getProperties()
+  systemProperty "geb.env", System.getProperty("geb.env", "remote")
+}
+
+Process processPhantom = null
+testHeadless.doFirst {
+  println "starting Phantomjs server..."
+  new Thread({
+    def driverPort = System.getProperty("geb.driverPort", "8910")
+    processPhantom = "phantomjs --webdriver=$driverPort".execute()
+    println "${processPhantom.err.text}"
+  }).start()
+}
+
+testHeadless.doLast {
+  println "stopping Phantomjs server..."
+  processPhantom.destroy()
+  println "stopped Phantomjs server..."
+}
+
+task setup() << {
+  Process processNpm = null
+  println "setup starting..."
+  processNpm = "npm install".execute()
+  processNpm.consumeProcessOutput(System.out, System.err)
+  processNpm.waitFor()
+}

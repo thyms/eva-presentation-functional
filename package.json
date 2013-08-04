@@ -1,0 +1,7 @@
+{
+  "name": "presentation-functional",
+  "version": "0.0.1",
+  "dependencies": {
+    "phantomjs": "1.9.0-1"
+  }
+}
