@@ -7,6 +7,7 @@ test-app:
 	./gradlew clean testHeadless
 
 test-app-ci:
+	npm install phantomjs
 	./gradlew clean testHeadless -Dgeb.env=functional01 -Dtest.env=functional01
 
 test-open-results:
