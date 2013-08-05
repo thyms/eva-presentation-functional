@@ -9,7 +9,7 @@ test-app:
 test-app-ci:
 	npm install phantomjs
 	./gradlew clean testHeadless -Dgeb.env=functional01 -Dtest.env=functional01
-	tar cvf eva-presentation-test-results-"\$BUILD_ID".tar.gz build/reports/tests > /dev/null
+	tar cvf eva-presentation-test-results-"\\$BUILD_ID".tar.gz build/reports/tests > /dev/null
 
 test-open-results:
 	open build/reports/tests/index.html
