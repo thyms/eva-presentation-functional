@@ -9,4 +9,3 @@ class TableModule extends Module {
     rows { moduleList RowEntryModule, $("tr") }
   }
 }
-«
