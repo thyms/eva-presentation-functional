@@ -23,7 +23,7 @@ environments {
   }
 
   functional01 {
-    baseUrl = "http://eva.functional01.presentation.dk.com"
+    baseUrl = "http://eva-presentation-functional01.herokuapp.com"
     driver = driverRemote
   }
 }

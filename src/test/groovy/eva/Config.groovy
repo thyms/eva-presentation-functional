@@ -12,11 +12,11 @@ stubulator {
 environments {
   functional01 {
     presentation {
-      baseUrl = "http://eva.functional01.presentation.dk.com"
+      baseUrl = "http://eva-presentation-functional01.herokuapp.com/"
       baseContext = ""
     }
     stubulator  {
-      baseUrl = "http://eva.stubulator01.presentation.dk.com"
+      baseUrl = "http://eva-presentation-stubulator01.herokuapp.com/"
       baseContext = ""
     }
   }
