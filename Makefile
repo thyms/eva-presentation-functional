@@ -6,6 +6,9 @@ run-app:
 test-app:
 	./gradlew clean testHeadless
 
+test-open-results:
+	open build/reports/tests/index.html
+
 setup-app:
 	echo 'No configuration to setup for this project'
 
