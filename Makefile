@@ -6,6 +6,9 @@ run-app:
 test-app:
 	./gradlew clean testHeadless
 
+test-app-ci:
+	./gradlew clean testHeadless -Dgeb.env=functional01 -Dtest.env=functional01
+
 test-open-results:
 	open build/reports/tests/index.html
 
