@@ -1,6 +1,5 @@
 package eva.spec
 
-import groovyx.net.http.ContentType
 import eva.page.StatusPage
 import eva.path.PathFixture
 import eva.path.PathPresentation
