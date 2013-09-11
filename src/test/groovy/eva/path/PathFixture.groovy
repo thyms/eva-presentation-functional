@@ -3,9 +3,11 @@ package eva.path
 import eva.spec.BaseSpecification
 
 enum PathFixture {
-  BASE(BaseSpecification.config.presentation.baseContext + "/admin/fixture"),
+  BASE(BaseSpecification.config.presentation.baseContext + "/fixture"),
   RESET("$BASE/reset"),
-  CONFIGS("$BASE/configs")
+  STATUS("$BASE/status"),
+  STATUS_COMMIT_HASH("$STATUS/commitHash"),
+  STATUS_APPLICATION_VERSION("$STATUS/applicationVersion")
 
   String path
 
