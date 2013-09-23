@@ -3,7 +3,6 @@ package eva.spec
 import eva.page.StatusPage
 import eva.path.PathFixture
 import eva.path.PathPresentation
-import groovyx.net.http.ContentType
 
 class StatusPageSpec extends BaseSpecification {
 
@@ -13,8 +12,6 @@ class StatusPageSpec extends BaseSpecification {
 
   def "Status page renders status of the application"() {
     given:
-      println ">>>>${PathFixture.STATUS_APPLICATION_VERSION}"
-      println "////${BaseSpecification.config.presentation.baseUrl}"
       def applicationVersion = presentation.get(path: PathFixture.STATUS_APPLICATION_VERSION).data.applicationVersion
       def gitCommitHash = presentation.get(path: PathFixture.STATUS_COMMIT_HASH).data.commitHash
 
